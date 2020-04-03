@@ -1,18 +1,23 @@
 ---
-layout: page
+layout: single
 title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+This homepage's owner is Junsoo Jung
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+This homepage's style is 
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+1.  포스팅은 시간상관없이 내맘대로
+2. 포스팅 내용은 그날 내가 하는 생각들 위주
+3. 그 외의 것은 생각나는대로 추가함
 
 
-[jekyll-organization]: https://github.com/jekyll
+
+This homepage's owner is
+
+1. 인천대학교 정보통신공학과 2학년 재학중
+2. 이름은 정준수
+3. 나이는 21살
+4. 사는곳은 인천 검단
+5. 좋아하는 것은  게임, 영화보기

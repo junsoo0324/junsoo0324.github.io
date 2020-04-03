@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title:  "Welcome to My World!"
 date:   2020-03-27 16:39:31 +0900
 categories: jekyll update
