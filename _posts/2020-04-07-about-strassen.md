@@ -7,17 +7,27 @@ author: JunSoo
 
 
 
-## 1.개요
+## 1.알고리즘이란?
 
-###### 행렬의 곱연산을 수행함에 있어 행렬이 커지면 커질수록 연산에 속도는 기하급수적으로 증가할 수밖에 없는 구조이다. 행렬의 곱은 각 원소를 곱한 후에 나온 결과를 더해 최종 행렬이 생성이 되며 행렬의 크기가 커질수록 곱하기 연산은 증가 할 수밖에 없다. cpu에 구조상 더하기 연산이 빠르기 때문에 스트라센 알고리즘에서는 곱하기 연산을 더하기 연산으로 치환하여 계산하도록 알고리즘을 보안했다.
+- ###### 알고리즘은 **어떤 목적**을 달성하거나 **결과물**을 만들어내기 위해 거쳐야 하는 일련의 과정
+
+- ###### 알고리즘은 각기 다른 모양과 형태를 가지고 있다. (한 문제에 다양한 알고리즘이 가능)
+
+  ###### **ex)** 애플파이는 하나의 메뉴지만 만드는 방법은 천차만별이다.
+
+  
+
+## 2.스트라센 알고리즘
+
+###### 독일의 수학자 폴커 슈트라센(Volker Strassen)이 1969년에 곱과 합의 시간복잡도 차이를 이용해 만든 알고리즘이다.
 
 
 
-## 2.알고리즘 방법
+## 3.알고리즘 방법
 
-###### 아래 A, B 행렬과 두 행의 곱의 결과 C가 있다고 했을 때
+###### 만약 A,B, 그리고 A x B 인 C 행렬이 있다고 했을 때 
 
-![A,B,C](https://t1.daumcdn.net/cfile/tistory/255BA03A5818B52830)
+![ABC](C:\Users\이경원\my-awesome-site\assets\images\ABC.PNG)
 
 
 
@@ -47,7 +57,9 @@ author: JunSoo
 
 
 
-###### 최종 C행렬은 M행렬의 더하기 연산으로 이루어져 있으며, 각 원소에 해당하는 방법이있다.
+###### 위의 M들은 C를 나타내기 위해 사용된다. 
+
+###### M을 이용해 C를 나타내면
 
 ![C1](https://t1.daumcdn.net/cfile/tistory/264E3D3753F446C624)
 
@@ -57,256 +69,48 @@ author: JunSoo
 
 ![C4](https://t1.daumcdn.net/cfile/tistory/25654A3753F446C715)
 
+###### 이 과정에서는 곱셈이 사용되지 않기 때문에, 전체 곱셈을 일곱 번의 곱셈과 18번의 덧셈으로 처리할 수 있다. 큰 행렬에 대해서는 행렬의 곱셈이 덧셈보다 더 많은 시간을 필요로 하기 때문에 덧셈을 더 하는 대신 곱셈을 덜 하는 것이 전체적으로 더 효율적이다.
 
+## 3.시간복잡도 분석
 
-## 3.결론
+- ###### 위의 슈트라센 알고리즘의 효율성을 파악하기 위해서는 시간복잡도를 측정해야 한다.
 
-###### 스트라센의 경우 행렬의 곱셉을 하기 위해서는 정사각행렬에 대해서만 처리가 가능하다. 그렇지 않을 경우에는 행렬을 정사각 행렬로 변경하는 작업이 필요하다. 또한, 특정 단계에서는 행렬의 곱이 더 빠른 구간이 있으며 스트라센 행렬에서는 최적의 행렬 크기에서는 일반곱으로 행렬을 풀어나가는 방법이 있다. 스트라센 알고리즘에서 또 눈여겨 볼 부분은 연산으로 사용하는 M행렬을 구하는 부분에서도 행렬의 곱이 쓰인다는 점이다. 행렬의 곱은 스트라센으로 풀어나가는 알고리즘이기 때문에 M1을 예로 들면 M1 := (A + A) strassen (A + B) 이런식으로 풀어 쓸수 있다. 결국에는 재귀적인 호출을 통해 스트라센을 구해 나가는 방식을 이용하는 알고리즘인것 이다. 분할 정복알고리즘과 동일하며, M에서는 각 행렬을 작은 단위로 분할하며 최종 C행렬을 구하기 위해서는 분할된 원소를 재조립하는 과정으로 최종 행렬을 얻어낼 수 있다.
+- ###### 시간 복잡도: n개의 입력이 주어졌을때 알고리즘이 얼만큼의 시간을 소요하는 지를 분석한 수치이고, Big-O표기법으로 주로 나타냄
 
+- ###### Big-O 표기법: 간단하게 알고리즘의 시간 복잡성의 점근 상한선을 나타내주는 표기법
 
+- ###### BIg-O 표기법으로 나타낸 O(g(n))이 상승그래프일수록 시간 복잡도는 늘어나고 알고리즘의 처리 속도는 느려진다.
 
-## 4.소스코드
+- ######  기본적인 행렬의 곱셈은
 
-```java
-public class Strassen {
+  ######  ![일반적인 행렬 곱](https://t1.daumcdn.net/cfile/tistory/216A1B365818B6470D)
 
-       public static void main(String[] args) {        
+  ###### 와 같이 2개의 행렬의 곱셈은 8번의 곱이 필요하고 이를 나타내면 ![O(n^3)](C:\Users\이경원\my-awesome-site\assets\images\O(n^3).PNG) 의 시간 복잡도가 나오게 된다.
 
-             int n = 1024;
+  ###### 그러나 슈트라센 알고리즘의 시간복잡도를 분석하게 되면, 한번 계산하는 시간을 T(n)라 하고 반복 외의 수행시간을 c라고 하면
 
-             int[][] x = initMetrix(n);
+  ###### ![strassen](C:\Users\이경원\my-awesome-site\assets\images\strassen.PNG) 
 
-             int[][] y = initMetrix(n);
-            
-             int[][] nomalResult = Strassen.metrixMul(n, x, y);
-            
-             Strassen strassen = new Strassen();
-            
-             int[][] strassenReslut = strassen.excuteStrassen(x, y);
-            
-             boolean checkMetrix = true;
+  ###### 이 나오게 되고, 이를 Big-O표기법으로 나타내게 되면
 
-             for (int i = 0; i < n; i++) {
-                   
-                    for (int j = 0; j < n; j++) {
-                          
-                           if (nomalResult[i][j] != strassenReslut[i][j]) {
+  ######  ![슈트라센 알고리즘 복잡도](C:\Users\이경원\my-awesome-site\assets\images\O(n^2.807).PNG)의 시간 복잡도가 나오게 된다.
 
-                                 checkMetrix = false;
+  
 
-                           }
+## 4.곱과 합 계산복잡도 차이
 
-                    }
-                   
-             }            
-            
-             System.out.println("결과 : " + checkMetrix);
-            
-       }
-      
-       public static int[][] initMetrix(int n) {
-            
-             Random r = new Random();
-            
-             int[][] resultMetrix = new int [n][n];
-            
-             for (int i = 0; i < n; i++) {
+###### ![graph](C:\Users\이경원\my-awesome-site\assets\images\graph.PNG) 
 
-                    for (int j = 0; j < n; j++) {
-
-                           resultMetrix[i][j] = r.nextInt(30);
-
-                    }
-
-             }
-
-             return resultMetrix;
-
-       }      
-      
-       public int[][] excuteStrassen(int[][] metrixX, int[][] metrixY) {
-            
-             // 스트라센의 경우 n*n 행렬로 연산
-
-             int n = metrixX.length;
-            
-             // 임계 차원 보다 작을 경우 기존 메트릭스 곱으로 풀이
-
-             if (n <= 2) {
-
-                    return metrixMul(n, metrixX, metrixY);
-
-             }
-            
-             // 4 등분
-
-             int rank = n / 2;
-            
-             // 배열 분해
-
-             int[][] a11 = subMetrix(rank, 0, 0, metrixX);
-
-             int[][] a12 = subMetrix(rank, 0, rank, metrixX);
-
-             int[][] a21 = subMetrix(rank, rank, 0, metrixX);
-
-             int[][] a22 = subMetrix(rank, rank, rank, metrixX);
-
-             int[][] b11 = subMetrix(rank, 0, 0, metrixY);
-
-             int[][] b12 = subMetrix(rank, 0, rank, metrixY);
-
-             int[][] b21 = subMetrix(rank, rank, 0, metrixY);
-
-             int[][] b22 = subMetrix(rank, rank, rank, metrixY);
-                          
-             int[][] m1 = excuteStrassen(metrixSum(a11, a22), metrixSum(b11, b22)); // m1=(a11+a11)(b11+b22)
-
-             int[][] m2 = excuteStrassen(metrixSum(a21, a22), b11); // m2=(a21+a22)b11
-
-             int[][] m3 = excuteStrassen(a11, metrixSub(b12, b22)); // m3=a11(b12-b22)
-
-             int[][] m4 = excuteStrassen(a22, metrixSub(b21, b11)); // m4=a22(b21-b11)
-
-             int[][] m5 = excuteStrassen(metrixSum(a11, a12), b22); // m5=(a11+a12)b22
-
-             int[][] m6 = excuteStrassen(metrixSub(a21, a11), metrixSum(b11, b12)); // m6=(a21-a11)(b11+b12)
-
-             int[][] m7 = excuteStrassen(metrixSub(a12, a22), metrixSum(b21, b22)); // m7=(a12-a22)(a21+b22)
-            
-             // 결과 생성
-
-             int[][] c11 = metrixSum(metrixSub(metrixSum(m1, m4), m5), m7); // c11 = m1 + m4 - m5 + m7
-             int[][] c12 = metrixSum(m3, m5); // c12 = m3 + m5
-
-             int[][] c21 = metrixSum(m2, m4); // c21 = m2 + m4
-
-             int[][] c22 = metrixSum(metrixSub(metrixSum(m1, m3), m2), m6); // c22 = m1 + m3 - m2 + m6
-           
-             // 결합
-
-             return combin(c11, c12, c21, c22);
-
-       }
-      
-       private int[][] combin(int[][] c11, int[][] c12, int[][] c21, int[][] c22) {
-
-             int n = c11.length;
- 
-             int[][] resultMetrix = new int [n*2][n*2];
-            
-             for (int i = 0; i < n; i ++) {
-
-                    for (int j = 0; j < n; j++) {
-
-                           resultMetrix[i][j] = c11[i][j]; // 11
-
-                           resultMetrix[i][j + n] = c12[i][j]; // 12
-
-                           resultMetrix[i + n][j] = c21[i][j]; // 21
-
-                           resultMetrix[i + n][j + n] = c22[i][j]; // 22
-
-                    }
-
-             }
-
-             return        resultMetrix;
-
-       }
-
-       private int[][] subMetrix(int n, int startX, int startY, int[][] metrix) {
-          
-             int[][] subMetirx = new int[n][n];
-            
-             for (int i = 0, x = startX; i < n; i++, x++) {
-
-                    for (int j = 0, y = startY; j < n; j++, y++) {
-
-                           subMetirx[i][j] = metrix[x][y];
-
-                    }
-
-             }
-
-             return subMetirx;
-
-       }
-      
-       private int[][] metrixSum(int[][] metrixX, int[][] metrixY) {
-
-             int n = metrixX.length;
-
-             int[][] metrixResult = new int[n][n];
-            
-             for (int i = 0; i < n; i++) {
-
-                    for (int j = 0; j < n; j++) {
-
-                           metrixResult[i][j] = metrixX[i][j] + metrixY[i][j];
-
-                    }
-
-             }
-            
-             return metrixResult;
-
-       }
-      
-       private int[][] metrixSub(int[][] metrixX, int[][] metrixY) {
-
-             int n = metrixX.length;
-
-             int[][] metrixResult = new int[n][n];
-            
-             for (int i = 0; i < n; i++) {
-
-                    for (int j = 0; j < n; j++) {
-
-                           metrixResult[i][j] = metrixX[i][j] - metrixY[i][j];
-
-                    }
-
-             }
-
-             return metrixResult;
-
-       }
-      
-       public static int[][] metrixMul(int n, int[][] metrixX, int[][] metrixY) {
-            
-             int [][] result = new int[n][n];
-            
-             for (int i = 0; i < n; i++) {
-
-                    for (int j = 0; j < n; j++) {
-
-                           for (int k = 0; k < n; k++) {
-
-                                 result[i][j] += metrixX[i][k] * metrixY[k][j];
-
-                           }
-
-                    }
-                 
-             }
-            
-             return result;
-
-       }
-
-}
-
-```
+###### 다음과 같이 기본적으로 곱은 합보다 시간 복잡도가 크게 된다.
 
 
 
 ## 5.최종결론
 
-###### 아마 제공된 코드를 수행하더라도 유익한 수행 시간을 얻어 낼 수 는 없을 것이다. 결국엔 자바에서나 C에서도 행렬을 구하는 과정에 산술연산이외에 추가로 필요한 작업들이 들어갔기 때문이다. 좀더 복잡한 과정을 통해 메모리 초기화 과정을 제거 할 수는 있으나 소스코드가 복잡해지기 때문에 이 쯤에서 멈추도록 하겠다.
+###### 스트라센 알고리즘은 곱과 합의 시간복잡도 차이를 이용해 나타낸 알고리즘이다. 그러나 다른 알고리즘과 또한 이 알고리즘의 속도에 비해 수치 안정성이 떨어지고, n이 작을경우 일반적인 행렬 곱셈이 빠를 수 있는 경우가 있으므로 작은 n에 대해서는 일반 행렬 곱셈을 추천한다.
+
+###### 이런 단점을 가지고 있지만 스트라센 알고리즘은 하나의 곱을 줄일 7번의 곱을 사용해 획기적으로 속도를 줄였다는데에서 의의를 찾을 수 있다. 
+
+###### 스트라센 알고리즘을 직접 알아보기 위해 소스코드를 만들어 보려했지만 아직은 지식이 부족해 손필기로만 작성할 수 밖에 없었다. 다음에 기회와 프로그래밍적인 지식이 늘어나게 된다면 한번 코딩으로 증명해보고 싶다는 생각이 들게 되었다. 
 
 
-
-
-
-###### 출처: https://loveisaround.tistory.com/entry/알고리즘-스트라센-strassen [언제나 밝음]
