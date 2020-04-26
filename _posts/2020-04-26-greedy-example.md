@@ -1,7 +1,7 @@
 ---
-layout:. single
-title: greedy algorism example
-time: 2020-04-26 18:00:00 +0900
+layout: single
+title: greedy algorithm
+time: 2020-04-26 16:00:00 +0900
 author: JunSoo
 ---
 
