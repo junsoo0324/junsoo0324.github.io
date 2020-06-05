@@ -27,7 +27,9 @@ author: JunSoo
 
 ## 코딩
 
-![FF](C:\Users\이경원\my-awesome-site\assets\images\ff.PNG)
+![ff](https://user-images.githubusercontent.com/62889378/83906957-77d04d00-a79f-11ea-8557-f59147d46582.PNG)
+
+
 
 ```java
 import java.lang.reflect.Array;
@@ -66,7 +68,7 @@ public class FirstFit implements Fit{
 
 ## 코딩
 
-![NF](C:\Users\이경원\my-awesome-site\assets\images\nf.PNG)
+![nf](https://user-images.githubusercontent.com/62889378/83906954-769f2000-a79f-11ea-8c2a-4a0a8857e3bc.PNG)
 
 ```java
 import java.util.ArrayList;
@@ -107,7 +109,7 @@ public class NextFit implements Fit{
 
 ## 코딩
 
-![BF](C:\Users\이경원\my-awesome-site\assets\images\bf.PNG)
+![bf](https://user-images.githubusercontent.com/62889378/83906946-72730280-a79f-11ea-8f4d-09bc0f2de62c.PNG)
 
 ```java
 import java.util.ArrayList;
@@ -163,7 +165,7 @@ public class BestFit implements Fit{
 
 ## 코딩
 
-![WF](C:\Users\이경원\my-awesome-site\assets\images\wf.PNG)
+![wf](https://user-images.githubusercontent.com/62889378/83906956-77d04d00-a79f-11ea-985a-2c4e10c137d4.PNG)
 
 ```java
 import java.util.ArrayList;
